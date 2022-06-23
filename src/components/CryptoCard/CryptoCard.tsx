@@ -1,17 +1,12 @@
 import { FC } from "react";
 import "./CryptoCard.css";
-
-interface Coin {
-  name: string;
-  image: string;
-  symbol: string;
-  id: string;
-}
+import { Coin } from "../../interfaces/interfaces";
+import { RemoveFunction, SetCoinFunction } from "../../types/types";
 
 const CryptoCard: FC<{
   coinData: Coin;
-  setClickedCoin: any;
-  removeCrypto: any;
+  setClickedCoin: SetCoinFunction;
+  removeCrypto: RemoveFunction;
 }> = ({ coinData, setClickedCoin, removeCrypto }) => {
   return (
     <div
@@ -31,7 +26,7 @@ const CryptoCard: FC<{
       ></img>
       <button
         className="crypto-card-delete-button"
-        onClick={(e) => removeCrypto(e, coinData)}
+        onClick={(event) => removeCrypto(event, coinData)}
       >
         Remove
       </button>

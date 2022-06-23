@@ -1,10 +1,11 @@
 import { FC } from "react";
 import "./CryptoModal.css";
-// const upArrow = require("../../assets/upArrow.svg") as string;
+import { SetCoinFunction } from "../../types/types";
+import { Coin } from "../../interfaces/interfaces";
 const upArrow: string = require("../../assets/upArrow.svg").default;
 const downArrow: string = require("../../assets/downArrow.svg").default;
 
-const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
+const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
   coinData,
   setClickedCoin,
 }) => {
@@ -27,14 +28,14 @@ const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
     <div
       className="modal-background"
       onClick={() => {
-        setClickedCoin(null);
+        setClickedCoin(undefined);
       }}
     >
       <div className="modal-container">
         <div className="modal-close-button">
           <button
             onClick={() => {
-              setClickedCoin(null);
+              setClickedCoin(undefined);
             }}
           >
             X
