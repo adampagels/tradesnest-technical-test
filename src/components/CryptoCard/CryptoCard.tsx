@@ -8,9 +8,17 @@ interface Coin {
   id: string;
 }
 
-const CryptoCard: FC<{ coinData: Coin }> = ({ coinData }) => {
+const CryptoCard: FC<{ coinData: Coin; setClickedCoin: any }> = ({
+  coinData,
+  setClickedCoin,
+}) => {
   return (
-    <div className="crypto-card">
+    <div
+      className="crypto-card"
+      onClick={() => {
+        setClickedCoin(coinData);
+      }}
+    >
       <div className="crypto-card-name-symbol-container">
         <h3 className="crypto-card-name">{coinData.name}</h3>
         <h4 className="crypto-card-symbol">{coinData.symbol}</h4>
