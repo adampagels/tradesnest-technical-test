@@ -8,10 +8,11 @@ interface Coin {
   id: string;
 }
 
-const CryptoCard: FC<{ coinData: Coin; setClickedCoin: any }> = ({
-  coinData,
-  setClickedCoin,
-}) => {
+const CryptoCard: FC<{
+  coinData: Coin;
+  setClickedCoin: any;
+  removeCrypto: any;
+}> = ({ coinData, setClickedCoin, removeCrypto }) => {
   return (
     <div
       className="crypto-card"
@@ -28,6 +29,12 @@ const CryptoCard: FC<{ coinData: Coin; setClickedCoin: any }> = ({
         src={coinData.image}
         alt={`${coinData.name} logo`}
       ></img>
+      <button
+        className="crypto-card-delete-button"
+        onClick={(e) => removeCrypto(e, coinData)}
+      >
+        Remove
+      </button>
     </div>
   );
 };
