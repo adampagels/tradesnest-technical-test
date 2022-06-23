@@ -5,6 +5,14 @@ const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
   coinData,
   setClickedCoin,
 }) => {
+  let priceChangeDifference;
+  if (coinData.price_change_percentage_24h > 0) {
+    priceChangeDifference = "positive";
+  } else if (coinData.price_change_percentage_24h < 0) {
+    priceChangeDifference = "negative";
+  } else if (coinData.price_change_percentage_24h === 0) {
+    priceChangeDifference = "neutral";
+  }
   return (
     <div
       className="modal-background"
@@ -35,7 +43,9 @@ const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
           <h5 className="modal-crypto-current-price">
             USD ${coinData.current_price}
           </h5>
-          <h6 className="modal-crypto-price-change-percentage">
+          <h6
+            className={`modal-crypto-price-change-percentage ${priceChangeDifference}`}
+          >
             {coinData.price_change_percentage_24h}
           </h6>
         </div>
