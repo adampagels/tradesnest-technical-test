@@ -1,0 +1,79 @@
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  background: #ffe;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  width: 28rem;
+  height: 30rem;
+  border-radius: 12px;
+  background: #fd9;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modal-close-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close-button button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal-crypto-card-image {
+  align-self: center;
+  height: clamp(14rem, 21vw, 16rem);
+}
+
+.modal-crypto-price-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modal-crypto-current-price,
+.modal-crypto-price-change-percentage {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.negative {
+  color: red;
+}
+
+.positive {
+  color: green;
+}
+
+.neutral {
+  color: gray;
+}
+
+.modal-crypto-name {
+  font-size: 4rem;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.modal-crypto-symbol {
+  color: gray;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.modal-crypto-price-percentage-container {
+  align-items: baseline;
+  display: flex;
+}

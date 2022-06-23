@@ -1,17 +1,26 @@
 .crypto-card {
+  background: #fd9;
   border-radius: 25px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-around;
   margin: 30px auto;
   padding: 15px;
+  position: relative;
+  transition: 0.3s;
   width: clamp(5rem, 50vw, 50rem);
+}
+
+.crypto-card:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transform: scale(1.05, 1.05);
 }
 
 .crypto-card-name {
   color: #333;
-  font-size: clamp(3rem, 3vw, 20rem);
+  font-size: clamp(2rem, 3vw, 20rem);
 }
 
 .crypto-card-symbol {
@@ -24,8 +33,34 @@
   height: clamp(2rem, 21vw, 14rem);
 }
 
-@media only screen and (min-width: 650px) {
+.crypto-card-delete-button {
+  bottom: 0rem;
+  right: 0rem;
+  position: absolute;
+  color: red;
+  padding: 1rem 2rem;
+  text-align: center;
+  background: none;
+  border: 1px solid red;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
+    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.crypto-card-delete-button:hover {
+  background: red;
+  cursor: pointer;
+  color: #ece1e1;
+  transform: background;
+}
+
+@media only screen and (min-width: 550px) {
   .crypto-card {
     flex-direction: row-reverse;
+  }
+  .crypto-card-delete-button {
+    width: auto;
   }
 }
