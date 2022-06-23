@@ -15,7 +15,11 @@ const CryptoCard: FC<{ coinData: Coin }> = ({ coinData }) => {
         <h3 className="crypto-card-name">{coinData.name}</h3>
         <h4 className="crypto-card-symbol">{coinData.symbol}</h4>
       </div>
-      <img className="crypto-card-image" src={coinData.image}></img>
+      <img
+        className="crypto-card-image"
+        src={coinData.image}
+        alt={`${coinData.name} logo`}
+      ></img>
     </div>
   );
 };
