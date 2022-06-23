@@ -13,6 +13,9 @@ const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
   } else if (coinData.price_change_percentage_24h === 0) {
     priceChangeDifference = "neutral";
   }
+  const shortenedPricePercentage = Number(
+    coinData.price_change_percentage_24h
+  ).toFixed(2);
   return (
     <div
       className="modal-background"
@@ -46,7 +49,7 @@ const CryptoModal: FC<{ coinData: any; setClickedCoin: any }> = ({
           <h6
             className={`modal-crypto-price-change-percentage ${priceChangeDifference}`}
           >
-            {coinData.price_change_percentage_24h}
+            {shortenedPricePercentage}%
           </h6>
         </div>
       </div>
