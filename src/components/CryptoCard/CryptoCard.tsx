@@ -8,6 +8,7 @@ const CryptoCard: FC<{
   setClickedCoin: SetCoinFunction;
   removeCrypto: RemoveFunction;
 }> = ({ coinData, setClickedCoin, removeCrypto }) => {
+  const { name, symbol, image } = coinData;
   return (
     <div
       className="crypto-card"
@@ -16,14 +17,10 @@ const CryptoCard: FC<{
       }}
     >
       <div className="crypto-card-name-symbol-container">
-        <h3 className="crypto-card-name">{coinData.name}</h3>
-        <h4 className="crypto-card-symbol">{coinData.symbol}</h4>
+        <h3 className="crypto-card-name">{name}</h3>
+        <h4 className="crypto-card-symbol">{symbol}</h4>
       </div>
-      <img
-        className="crypto-card-image"
-        src={coinData.image}
-        alt={`${coinData.name} logo`}
-      ></img>
+      <img className="crypto-card-image" src={image} alt={`${name} logo`}></img>
       <button
         className="crypto-card-delete-button"
         onClick={(event) => removeCrypto(event, coinData)}
