@@ -2,7 +2,7 @@ import { FC } from "react";
 import "./CryptoModal.css";
 import { SetCoinFunction } from "../../types/types";
 import { Coin } from "../../interfaces/interfaces";
-import { formatPricing } from "../utils/index";
+import { formatPricing } from "../../utils/index";
 const upArrow: string = require("../../assets/upArrow.svg").default;
 const downArrow: string = require("../../assets/downArrow.svg").default;
 
