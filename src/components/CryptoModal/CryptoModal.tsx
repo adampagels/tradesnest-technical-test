@@ -2,6 +2,7 @@ import { FC } from "react";
 import "./CryptoModal.css";
 import { SetCoinFunction } from "../../types/types";
 import { Coin } from "../../interfaces/interfaces";
+import { formatPricing } from "../utils/index";
 const upArrow: string = require("../../assets/upArrow.svg").default;
 const downArrow: string = require("../../assets/downArrow.svg").default;
 
@@ -26,7 +27,10 @@ const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
   const shortenedPricePercentage = Number(price_change_percentage_24h).toFixed(
     2
   );
-
+  const price =
+    formatPricing.format(current_price) === "$0.00"
+      ? `$${current_price}`
+      : formatPricing.format(current_price);
   return (
     <div
       className="modal-background"
@@ -54,7 +58,7 @@ const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
           alt={`${name} logo`}
         ></img>
         <div className="modal-crypto-price-container">
-          <h5 className="modal-crypto-current-price">USD ${current_price}</h5>
+          <h5 className="modal-crypto-current-price">USD {price}</h5>
           <div className="modal-crypto-price-percentage-container">
             <img
               className="modal-crypto-price-arrow"
