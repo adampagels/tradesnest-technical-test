@@ -61,7 +61,7 @@
 }
 
 .modal-crypto-name {
-  font-size: 4rem;
+  font-size: clamp(3rem, 3vw, 4rem);
   margin-bottom: 0px;
   margin-top: 0px;
 }
