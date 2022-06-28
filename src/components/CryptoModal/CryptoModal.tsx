@@ -2,9 +2,7 @@ import { FC } from "react";
 import "./CryptoModal.css";
 import { SetCoinFunction } from "../../types/types";
 import { Coin } from "../../interfaces/interfaces";
-import { formatPricing } from "../../utils/index";
-const upArrow: string = require("../../assets/upArrow.svg").default;
-const downArrow: string = require("../../assets/downArrow.svg").default;
+import { formatPricing, setPriceDifference } from "../../utils/index";
 
 const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
   coinData,
@@ -13,24 +11,18 @@ const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
   const { name, symbol, image, price_change_percentage_24h, current_price } =
     coinData;
 
-  let priceChangeDifference;
-  let arrow;
-  if (price_change_percentage_24h > 0) {
-    priceChangeDifference = "positive";
-    arrow = upArrow;
-  } else if (price_change_percentage_24h < 0) {
-    priceChangeDifference = "negative";
-    arrow = downArrow;
-  } else if (price_change_percentage_24h === 0) {
-    priceChangeDifference = "neutral";
-  }
-  const shortenedPricePercentage = Number(price_change_percentage_24h).toFixed(
-    2
+  const { priceArrow, priceChangeDifference } = setPriceDifference(
+    price_change_percentage_24h
   );
+
+  const formattedPricePercentage = price_change_percentage_24h.toFixed(2);
+
+  // do not format price if formatted price will equal "$0.00"
   const price =
     formatPricing.format(current_price) === "$0.00"
       ? `$${current_price}`
       : formatPricing.format(current_price);
+
   return (
     <div
       className="modal-background"
@@ -62,13 +54,13 @@ const CryptoModal: FC<{ coinData: Coin; setClickedCoin: SetCoinFunction }> = ({
           <div className="modal-crypto-price-percentage-container">
             <img
               className="modal-crypto-price-arrow"
-              src={arrow}
+              src={priceArrow}
               alt="arrow to show price increase or decrease"
             />
             <h6
               className={`modal-crypto-price-change-percentage ${priceChangeDifference}`}
             >
-              {shortenedPricePercentage}%
+              {formattedPricePercentage}%
             </h6>
           </div>
         </div>
