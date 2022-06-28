@@ -4,6 +4,7 @@ import useFetch from "../../hooks/UseFetch";
 import CryptoModal from "../CryptoModal/CryptoModal";
 import { Coin } from "../../interfaces/interfaces";
 import Loader from "../Loader/Loader";
+import EmptyList from "../EmptyList/EmptyList";
 
 const CryptoList: FC<{}> = () => {
   const [clickedCoin, setClickedCoin] = useState<Coin>();
@@ -33,7 +34,12 @@ const CryptoList: FC<{}> = () => {
 
   return (
     <>
+      {!APIResponse.loading &&
+        cryptoList instanceof Array &&
+        cryptoList.length === 0 && <EmptyList />}
+
       {APIResponse.loading && <Loader />}
+
       {cryptoList instanceof Array &&
         cryptoList.map((coin: Coin) => {
           return (
