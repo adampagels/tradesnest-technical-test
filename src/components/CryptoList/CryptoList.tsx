@@ -1,19 +1,16 @@
 import { FC, useEffect, useState } from "react";
 import CryptoCard from "../CryptoCard/CryptoCard";
-import useFetch from "../../hooks/UseFetch";
 import CryptoModal from "../CryptoModal/CryptoModal";
 import { Coin } from "../../interfaces/interfaces";
 import Loader from "../Loader/Loader";
 import EmptyList from "../EmptyList/EmptyList";
+import { FetchedCoinList } from "../../services/dataService";
 
 const CryptoList: FC<{}> = () => {
   const [clickedCoin, setClickedCoin] = useState<Coin>();
   const [cryptoList, setCryptoList] = useState<object>([]);
 
-  const APIResponse = useFetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false"
-  );
-  const { data } = APIResponse;
+  const { data, loading } = FetchedCoinList();
 
   const removeCrypto = (event: React.MouseEvent, coin: Coin) => {
     event.stopPropagation();
@@ -34,11 +31,11 @@ const CryptoList: FC<{}> = () => {
 
   return (
     <>
-      {!APIResponse.loading &&
-        cryptoList instanceof Array &&
-        cryptoList.length === 0 && <EmptyList />}
+      {!loading && cryptoList instanceof Array && cryptoList.length === 0 && (
+        <EmptyList />
+      )}
 
-      {APIResponse.loading && <Loader />}
+      {loading && <Loader />}
 
       {cryptoList instanceof Array &&
         cryptoList.map((coin: Coin) => {
