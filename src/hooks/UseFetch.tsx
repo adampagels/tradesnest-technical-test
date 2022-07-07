@@ -7,8 +7,8 @@ type APIResponse = {
 };
 
 const useFetch = (url: string): APIResponse => {
-  const [data, setData] = useState<object>(null || {});
-  const [error, setError] = useState<object>(null || {});
+  const [data, setData] = useState<object>({});
+  const [error, setError] = useState<object>({});
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const getAPIData = async () => {
@@ -25,7 +25,7 @@ const useFetch = (url: string): APIResponse => {
       setLoading(false);
     };
 
-    url && getAPIData();
+    getAPIData();
   }, [url]);
 
   return { data, error, loading };
